@@ -7,15 +7,12 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  box-sizing: border-box;
+  background-color: #f6f2f2;
   color: #212121;
   line-height: 1.5;
-  /* background-image: url('/src/images/cat-bg.png');
-  background-repeat: no-repeat;
-  background-size: 400px auto;
-  background-position: right top;
-  background-color: #deaf43e1; */
- 
+  padding: 25px;
+
 }
 
 img {
@@ -24,7 +21,21 @@ img {
 }
 
 .breed-select {
+  width: 100%;
+  min-width: 360px;
+  max-width: 30ch;
+  border: none;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  
+  margin-bottom: 25px;
 }
+
 .loader{
   font-size: 24px;
   color: #090909;
@@ -42,16 +53,27 @@ img {
 }
 
 @keyframes lineGrow {to{width: 100%;}}
-.error {
-}
-.cat-info {
-}
 
+.cat-info {
+  display: flex;
+  gap: 25px;
+  justify-content: start;
+}
 .card-img {
+  object-fit: contain;
+}
+.card-text-container {
+margin: 0 auto;
+max-width: (100% - 90px);
+
 }
 .card-title {
+  font-size: 36px;
+margin-top: 0;
 }
+
 .card-text {
+  font-size: 18px;
 }
 
 .hidden {
