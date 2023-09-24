@@ -64,12 +64,11 @@ function onSelectChange() {
 }
 
 function createSelectMarkup(el) {
-  return markup = `<option value="${el.id}">${el.name}</option>`;
+  return `<option value="${el.id}">${el.name}</option>`;
 }
 
 function createCardMarkup(el) {
-  return  markup = 
-  `<img class="card-img" src="${el.url}" alt="${el.breeds[0].alt_names}" width="360px">
+  return `<img class="card-img" src="${el.url}" alt="${el.breeds[0].alt_names}" width="360px">
   <div class="card-text-container">
   <h2 class="card-title">${el.breeds[0].name}</h2>
   <p class="card-text">${el.breeds[0].description}</p>
