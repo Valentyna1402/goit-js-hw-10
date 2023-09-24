@@ -39,6 +39,7 @@ API.fetchBreeds()
     Notiflix.Notify.failure('Oops! Something went wrong!');
     errorString.classList.remove('hidden');
   });
+  
 
 select.addEventListener('change', onSelectChange);
 
