@@ -8,7 +8,6 @@ const loaderString = document.querySelector('.loader');
 const errorString = document.querySelector('.error');
 const catContainer = document.querySelector('.cat-info');
 
-//document.style.backgroundImage = 'url("images/cat-bg.jpg")';
 let placeholder = document.createElement('option');
 placeholder.textContent = 'Please, select a cat';
 select.append(placeholder);
@@ -21,9 +20,8 @@ hideEl(errorString);
 
 API.fetchBreeds()
   .then(data => {
-    data.map(({ id, name }) => {
-      const markup = `<option value="${id}">${name}</option>`;
-      return select.insertAdjacentHTML('beforeend', markup);
+    data.map((el) => {
+      return select.insertAdjacentHTML('beforeend', createSelectMarkup(el));
     });
   })
   .catch(error => {
@@ -45,17 +43,10 @@ function onSelectChange() {
       if (data.length === 0) {
         throw new Error(response.statusText);
       }
-      const breedInfo = data[0].breeds[0];
+      
       data
         .map(el => {
-          const markup = 
-      `<img class="card-img" src="${el.url}" alt="${breedInfo.alt_names}" width="360px">
-      <div class="card-text-container">
-      <h2 class="card-title">${breedInfo.name}</h2>
-      <p class="card-text">${breedInfo.description}</p>
-      <p class="card-text"><b>Temperament</b>: ${breedInfo.temperament}.</p>
-      </div>`;
-          return (catContainer.innerHTML = markup);
+          return (catContainer.innerHTML = createCardMarkup(el));
         })
         .join('');
       showEl(catContainer);
@@ -70,6 +61,20 @@ function onSelectChange() {
       showEl(select);
       select.value = placeholder.textContent = 'Select another cat';
     });
+}
+
+function createSelectMarkup(el) {
+  return markup = `<option value="${el.id}">${el.name}</option>`;
+}
+
+function createCardMarkup(el) {
+  return  markup = 
+  `<img class="card-img" src="${el.url}" alt="${el.breeds[0].alt_names}" width="360px">
+  <div class="card-text-container">
+  <h2 class="card-title">${el.breeds[0].name}</h2>
+  <p class="card-text">${el.breeds[0].description}</p>
+  <p class="card-text"><b>Temperament</b>: ${el.breeds[0].temperament}.</p>
+  </div>`;
 }
 
 function hideEl(el) {
